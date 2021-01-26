@@ -110,7 +110,7 @@
 <script>
 import axios from "axios";
 import authHeader from "../services/auth-header";
-const url = "http://localhost::8888/PERSONNEL-SERVICE/users";
+const url = "http://localhost:1255/appUsers";
 export default {
   data() {
     return {
@@ -134,23 +134,29 @@ export default {
     },
     createPost() {
       axios
-        .post(url + "/add", {
-          nom: this.nom,
-          prenom: this.prenom,
-          email: this.email,
-          mdp: this.mdp,
-        })
+        .post(
+          url + "/add",
+          {
+            nom: this.nom,
+            prenom: this.prenom,
+            email: this.email,
+            mdp: this.mdp,
+          },
+          { headers: authHeader() }
+        )
         .then(() => {
           this.getPosts();
         });
     },
     deletePost(id) {
-      axios.post(url + "/delete", { id }).then(() => {
-        this.getPosts();
-      });
+      axios
+        .post(url + "/delete", { id }, { headers: authHeader() })
+        .then(() => {
+          this.getPosts();
+        });
     },
     getPosts() {
-      axios.get(url).then((res) => {
+      axios.get(url, { headers: authHeader() }).then((res) => {
         const data = res.data;
         this.posts = data.map((post) => ({ ...post }));
       });

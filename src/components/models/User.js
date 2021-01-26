@@ -4,9 +4,12 @@ class User {
   prenom;
   username;
   email;
-  mdp;
+  password;
   fonction;
   missions;
   dateDeNaissance;
+  appRoles;
+  accessToken;
+  refreshToken;
 }
 export default User;

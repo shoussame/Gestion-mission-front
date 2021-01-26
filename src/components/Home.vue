@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="control">
-      <button class="button is-primary" @click="redirectMission">
+      <button class="button is-primary" @click="redirectMissions">
         Missions
       </button>
     </div>
@@ -20,10 +20,10 @@ export default {
   },
   methods: {
     redirectPersonnel() {
-      this.$router.push("personnes");
+      this.$router.push("/personnes");
     },
     redirectMissions() {
-      this.$router.push("missions");
+      this.$router.push("/missions");
     },
   },
   mounted() {},

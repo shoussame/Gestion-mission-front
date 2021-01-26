@@ -79,7 +79,7 @@ export default {
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push("/missions");
+      this.$router.push("/home");
     }
   },
   methods: {
@@ -92,9 +92,9 @@ export default {
         }
 
         if (this.user.username && this.user.password) {
-          this.$store.dispatch("/login", this.user).then(
+          this.$store.dispatch("auth/login", this.user).then(
             () => {
-              this.$router.push("/professeurs");
+              this.$router.push("/home");
             },
             (error) => {
               this.loading = false;

@@ -4,18 +4,16 @@ const API_URL = "http://localhost:1255/";
 
 class AuthService {
   login(user) {
-    return axios
-      .post(API_URL + "login", {
-        username: user.username,
-        password: user.password,
-      })
-      .then((response) => {
-        if (response.data.accessToken) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
+    var postdata = new URLSearchParams();
+    postdata.append("username", user.username);
+    postdata.append("password", user.password);
+    return axios.post(API_URL + "login", postdata).then((response) => {
+      if (response.data.accessToken) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+      }
 
-        return response.data;
-      });
+      return response.data;
+    });
   }
 
   logout() {
