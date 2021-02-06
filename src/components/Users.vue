@@ -110,7 +110,7 @@
 <script>
 import axios from "axios";
 import authHeader from "../services/auth-header";
-const url = "http://localhost:1255/appUsers";
+const url = "http://localhost:9090/personnes";
 export default {
   data() {
     return {

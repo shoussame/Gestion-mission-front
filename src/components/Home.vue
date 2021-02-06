@@ -1,14 +1,16 @@
 <template>
   <div class="ui container">
+    <br />
+    <br />
+    <br />
     <div class="control">
-      <button class="button is-primary" @click="redirectPersonnel">
-        Personnel
-      </button>
+      <sui-button primary @click="redirectPersonnel">Professeurs</sui-button>
     </div>
+    <br />
+    <br />
+    <br />
     <div class="control">
-      <button class="button is-primary" @click="redirectMissions">
-        Missions
-      </button>
+      <sui-button secondary @click="redirectMissions">Missions</sui-button>
     </div>
   </div>
 </template>

@@ -57,9 +57,9 @@
         <!-- card -->
         <div class="ui fluid card">
           <div class="content">
-            <p class="header">{{ post.dateDemande }}</p>
+            <p class="header">{{ post.professeur.nom }}</p>
             <div class="meta">
-              <span class="date">{{ post.dateDepart }}</span>
+              <span class="date">{{ post.dateDemande }}</span>
             </div>
             <div class="description">
               {{ post.dateRetour }}
@@ -162,8 +162,7 @@
 import axios from "axios";
 import Mission from "./models/MissionModel";
 import Professeur from "./models/User";
-import authHeader from "../services/auth-header"
-const url = "http://localhost:1255/missions";
+const url = "http://localhost:9090/missions";
 export default {
   data() {
     return {
@@ -208,19 +207,17 @@ export default {
         });
     },
     deleteMission(id) {
-      console.log(id);
       axios.post(url + "/delete", { id }).then(() => {
         this.getMission();
       });
     },
     getMission() {
-      axios.get(url, {headers : authHeader()}).then((res) => {
-        const data = res.data;
-        this.posts = data.map((post) => ({ ...post }));
+      axios.get(url).then((res) => {
+        this.posts = res.data;
       });
     },
     getProfs() {
-      axios.get("http://localhost:1255/professeurs", {headers : authHeader()}).then((res) => {
+      axios.get("http://localhost:9090/professeurs").then((res) => {
         const data = res.data;
         const d = JSON.stringify(data);
         this.profs = d;
@@ -248,8 +245,8 @@ export default {
     },
     updateMission() {
       // eslint-disable-next-line no-console
-      console.log(url + "/update", this.current_post, {headers : authHeader()});
-      axios.post(url + "/update", this.current_post, {headers : authHeader()}).then(() => {
+      console.log(url + "/update", this.current_post);
+      axios.post(url + "/update", this.current_post).then(() => {
         this.toggle({});
         this.getMission();
       });
