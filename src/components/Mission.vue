@@ -22,7 +22,7 @@
         </sui-form-field>
         <sui-form-field>
         <label>Professeur :</label>
-          <select name="skills" multiple="" class="ui fluid dropdown">
+          <select name="nomProf" multiple="" class="ui fluid dropdown">
             <option v-for="prof in nomProf" :key="prof.id">
                 <option value="">{{
               prof
