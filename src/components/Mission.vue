@@ -1,5 +1,6 @@
 <template>
   <div class="ui container">
+    <br>
     <!-- form add new post -->
     <h1 class="ui header">Missions</h1>
     <button class="ui positive basic button" v-on:click="addB = !addB">
@@ -78,7 +79,7 @@
             </button>
             <button
               class="ui right floated green button"
-              @click="validateMission(post.id)"
+              @click="validateMission(post)"
             >
               Validate
             </button>
@@ -222,30 +223,28 @@ export default {
         const d = JSON.stringify(data);
         this.profs = d;
         this.nomProf = data.map((a) => a.nom);
-        console.log(this.nomProf);
       });
     },
-    validateMission() {
+    validateMission(mission) {
       if (this.professeur.fonction === "DIRECTEUR") {
-        this.mission.validationDirecteur = true;
+        mission.validationDirecteur = true;
       } else {
         if (this.professeur.fonction === "DIRECTEUR_ADJ") {
-          this.mission.validationDirectAdj = true;
+          mission.validationDirectAdj = true;
         } else {
           if (this.professeur.fonction === "COMPTABLE") {
-            this.mission.validationComptable = true;
+            mission.validationComptable = true;
           }
         }
       }
-      this.updateMission();
+     axios.post(url + "/update", mission);
     },
     declineMission(post) {
-      post.mission.statut = true;
+      post.statutActuel = true;
       this.updateMission();
     },
     updateMission() {
       // eslint-disable-next-line no-console
-      console.log(url + "/update", this.current_post);
       axios.post(url + "/update", this.current_post).then(() => {
         this.toggle({});
         this.getMission();

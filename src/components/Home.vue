@@ -4,13 +4,19 @@
     <br />
     <br />
     <div class="control">
-      <sui-button primary @click="redirectPersonnel">Professeurs</sui-button>
+      <sui-button primary @click="redirectProfesseurs">Professeurs</sui-button>
     </div>
     <br />
     <br />
     <br />
     <div class="control">
       <sui-button secondary @click="redirectMissions">Missions</sui-button>
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="control">
+      <sui-button primary @click="redirectPersonnel">Personnel</sui-button>
     </div>
   </div>
 </template>
@@ -26,6 +32,9 @@ export default {
     },
     redirectMissions() {
       this.$router.push("/missions");
+    },
+    redirectProfesseurs() {
+      this.$router.push("/professeurs");
     },
   },
   mounted() {},
